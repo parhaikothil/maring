@@ -1,0 +1,966 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Maring Tribe: A Historical Profile</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Manrope:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* --- 0. VARIABLES --- */
+      :root {
+        /* PALETTE */
+        --c-charcoal: #1a1a1a; /* Soft Black */
+        --c-void: #111111; /* Darker accents */
+        --c-white: #ffffff;
+        --c-off-white: #fcfcfc;
+        --c-red: #cc0000; /* Crimson */
+        --c-red-dim: rgba(204, 0, 0, 0.08);
+        --c-text: #2a2a2a;
+        --c-gray: #6e6e73; /* Apple-style gray */
+
+        /* TYPOGRAPHY */
+        --f-display: "Playfair Display", serif;
+        --f-header: "Cinzel", serif;
+        --f-body: "Manrope", sans-serif;
+
+        /* LAYOUT */
+        --w-content: 700px;
+        --ease-apple: cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      /* --- 1. RESET & BASE --- */
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+        background-color: var(--c-charcoal);
+      }
+
+      body {
+        font-family: var(--f-body);
+        color: var(--c-text);
+        background-color: var(--c-white);
+        line-height: 1.65;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      /* --- 2. TYPOGRAPHY --- */
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: var(--f-display);
+        color: var(--c-charcoal);
+        font-weight: 400;
+        line-height: 1.1;
+        letter-spacing: -0.01em;
+      }
+
+      /* Hero Title */
+      .super-title {
+        font-family: var(--f-header);
+        font-size: clamp(4rem, 15vw, 13rem);
+        text-transform: uppercase;
+        line-height: 0.85;
+        letter-spacing: -0.04em;
+        color: var(--c-charcoal);
+        position: relative;
+        z-index: 2;
+        text-align: center;
+      }
+
+      /* Section Headers */
+      .section-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin-bottom: 0.5rem;
+        position: relative;
+        display: inline-block;
+      }
+
+      /* Red accent dot */
+      .section-title::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        right: -10px;
+        width: 6px;
+        height: 6px;
+        background-color: var(--c-red);
+        border-radius: 50%;
+      }
+
+      /* Subheaders */
+      h3 {
+        font-family: var(--f-body);
+        font-size: 0.95rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin-top: 3rem;
+        margin-bottom: 1.2rem;
+        color: var(--c-red);
+        display: flex;
+        align-items: center;
+      }
+
+      h3::before {
+        content: "";
+        display: block;
+        width: 24px;
+        height: 1px;
+        background: var(--c-red);
+        margin-right: 12px;
+        opacity: 0.6;
+      }
+
+      /* Body Text */
+      p {
+        margin-bottom: 1.4rem;
+        color: #333;
+        max-width: var(--w-content); /* Aligns perfectly with tables */
+        text-align: justify;
+        font-size: 1.05rem;
+      }
+
+      strong {
+        color: var(--c-charcoal);
+        font-weight: 700;
+      }
+
+      /* --- 3. NAVIGATION --- */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 1.5rem 3rem;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        transition: transform 0.3s ease;
+      }
+
+      .nav-logo {
+        font-family: var(--f-header);
+        font-weight: 700;
+        font-size: 1rem;
+        letter-spacing: 0.2em;
+        color: var(--c-charcoal);
+        text-decoration: none;
+      }
+
+      .nav-progress {
+        font-family: var(--f-body);
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        color: var(--c-gray);
+        text-transform: uppercase;
+      }
+
+      /* --- 4. HERO SECTION --- */
+      header.hero {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        background-color: var(--c-white);
+      }
+
+      /* Complex Flame Animation */
+      .orb-wrapper {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        pointer-events: none;
+        opacity: 0.8;
+      }
+
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+      }
+
+      .orb-1 {
+        width: 40vw;
+        height: 40vw;
+        background: radial-gradient(
+          circle,
+          rgba(204, 0, 0, 0.3) 0%,
+          rgba(255, 255, 255, 0) 70%
+        );
+        animation: breathe 8s ease-in-out infinite alternate;
+      }
+
+      .orb-2 {
+        width: 30vw;
+        height: 30vw;
+        background: radial-gradient(
+          circle,
+          rgba(255, 50, 50, 0.2) 0%,
+          rgba(255, 255, 255, 0) 70%
+        );
+        animation: drift 12s linear infinite;
+      }
+
+      @keyframes breathe {
+        0% {
+          transform: scale(1);
+          opacity: 0.4;
+        }
+        100% {
+          transform: scale(1.15);
+          opacity: 0.7;
+        }
+      }
+
+      @keyframes drift {
+        0% {
+          transform: translate(-5%, -5%) scale(1);
+        }
+        50% {
+          transform: translate(5%, 5%) scale(0.9);
+        }
+        100% {
+          transform: translate(-5%, -5%) scale(1);
+        }
+      }
+
+      .hero-subtitle {
+        font-family: var(--f-body);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5em;
+        margin-top: 2.5rem;
+        color: var(--c-gray);
+        z-index: 2;
+      }
+
+      /* --- 5. GRID LAYOUT --- */
+      .container {
+        max-width: 1500px;
+        margin: 0 auto;
+        padding: 0 4vw;
+      }
+
+      section {
+        padding: 7rem 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      }
+
+      .grid-layout {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 4rem;
+      }
+
+      .sticky-col {
+        position: sticky;
+        top: 7rem;
+        height: fit-content;
+      }
+
+      .chapter-num {
+        font-family: var(--f-header);
+        font-size: 5rem;
+        color: rgba(0, 0, 0, 0.06);
+        line-height: 0.8;
+        display: block;
+        margin-bottom: 0.8rem;
+      }
+
+      .chapter-caption {
+        font-size: 0.8rem;
+        color: var(--c-gray);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      /* --- 6. COMPONENTS --- */
+
+      /* Drop Cap */
+      .drop-cap::first-letter {
+        float: left;
+        font-family: var(--f-header);
+        font-size: 4.8rem;
+        line-height: 0.8;
+        padding-right: 16px;
+        padding-top: 4px;
+        color: var(--c-red);
+      }
+
+      /* BLOCKQUOTE - 700px */
+      blockquote {
+        font-family: var(--f-display);
+        font-size: 1.7rem;
+        line-height: 1.35;
+        font-style: italic;
+        margin: 3.5rem 0;
+        padding: 2rem 2.5rem;
+        border-left: 3px solid var(--c-red);
+        background: var(--c-red-dim);
+        color: var(--c-charcoal);
+        max-width: var(--w-content);
+        width: 100%;
+        border-radius: 0 12px 12px 0; /* Soft rounded corner */
+      }
+
+      /* LISTS - 700px */
+      ul {
+        list-style: none;
+        margin: 2rem 0;
+        max-width: var(--w-content);
+        width: 100%;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      ul li {
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        display: flex;
+        align-items: flex-start;
+        font-size: 1.05rem;
+        color: var(--c-text);
+      }
+
+      ul li::before {
+        content: "●";
+        color: var(--c-red);
+        font-size: 0.5rem;
+        margin-right: 1.2rem;
+        margin-top: 0.5rem;
+        flex-shrink: 0;
+      }
+
+      /* TABLES - 700px (Apple Style Card) */
+      .data-card {
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        border-radius: 16px; /* Smooth corners */
+        margin: 2.5rem 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); /* Floating effect */
+        overflow-x: auto;
+        max-width: var(--w-content);
+        width: 100%;
+        backdrop-filter: blur(10px);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+      }
+
+      th {
+        text-align: left;
+        padding: 1.2rem 1.5rem;
+        background: var(--c-charcoal);
+        color: var(--c-white);
+        font-family: var(--f-body);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.7rem;
+        font-weight: 600;
+      }
+
+      td {
+        padding: 1.2rem 1.5rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        vertical-align: middle;
+        color: var(--c-text);
+        transition: background 0.2s;
+      }
+
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      tr:hover td {
+        background-color: rgba(0, 0, 0, 0.01);
+      }
+
+      /* --- 7. FOOTER --- */
+      footer {
+        background: var(--c-charcoal);
+        color: var(--c-white);
+        padding: 8rem 2rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .footer-logo {
+        font-family: var(--f-header);
+        font-size: 1.5rem;
+        letter-spacing: 0.2em;
+      }
+
+      .footer-copy {
+        font-size: 0.8rem;
+        color: #888;
+      }
+
+      /* --- 8. ANIMATIONS & SCROLL BAR --- */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 1s var(--ease-apple),
+          transform 1s var(--ease-apple);
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      #scroll-line {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        height: 4px;
+        background: var(--c-red);
+        width: 0%;
+        z-index: 2000;
+        transition: width 0.1s linear;
+      }
+
+      /* Responsive */
+      @media (max-width: 1024px) {
+        .grid-layout {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+        .sticky-col {
+          position: relative;
+          top: 0;
+          margin-bottom: 2rem;
+          border-bottom: 1px solid #eee;
+          padding-bottom: 1rem;
+        }
+        .chapter-num {
+          font-size: 3rem;
+          display: inline-block;
+          margin-right: 1rem;
+        }
+        .section-title {
+          margin-bottom: 0;
+        }
+        .super-title {
+          font-size: 14vw;
+        }
+        section {
+          padding: 4rem 0;
+        }
+        blockquote {
+          font-size: 1.3rem;
+          padding: 1.5rem;
+        }
+        /* Mobile adjustment for 700px width */
+        p,
+        blockquote,
+        ul,
+        .data-card {
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="scroll-line"></div>
+
+    <nav>
+      <a href="#" class="nav-logo">MARING HISTORICAL PROFILE</a>
+      <div class="nav-progress">MUA DOCUMENT</div>
+    </nav>
+
+    <header class="hero">
+      <div class="orb-wrapper">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+      </div>
+      <h1 class="super-title">The<br />Maring</h1>
+      <div class="hero-subtitle">People of the Unquenched Fire</div>
+    </header>
+
+    <main class="container">
+      <section id="people">
+        <div class="grid-layout">
+          <div class="sticky-col reveal">
+            <span class="chapter-num">01</span>
+            <h2 class="section-title">The People</h2>
+            <div class="chapter-caption">Historical Profile</div>
+          </div>
+          <div class="content-col reveal">
+            <p class="drop-cap">
+              Maring is one of the oldest Naga Tribes found settled in the
+              south-eastern part of the present state of Manipur (India),
+              bordering Myanmar (erstwhile Burma). They mostly inhabit the
+              Chandel district of the present Manipur state, but also found
+              scattered in other districts like Senapati, Ukhrul, Tamenglong,
+              etc.
+            </p>
+            <p>
+              There are some groups of people found living in other parts of
+              India and other countries like Bangladesh and Myanmar whose
+              appearances are similar to the Maring people. Maring people are
+              simple, generous, hygienic and heroic. It is also said that the
+              Maring people were physically tall and strong.
+            </p>
+            <blockquote>
+              “The features of the Marings (Murrings) approximate to those of
+              the Burmese (Myanmarese); some of them have flat and others have
+              well-shaped noses. And their general expression is mild and
+              intelligent. The height of the men of these tribes (Nagas) varies
+              from the slender, lightly built Marings to the tall, sturdy,
+              finely proportioned Mao’s”
+            </blockquote>
+            <p>
+              The Maring people have many important peculiarities and
+              distinctiveness from other Naga tribes and Non Naga tribes as well
+              that easily set them aside. One of the peculiarities and
+              distinctiveness of the Maring tribe may be exemplified by “Hasang”
+              (blacken teeth). This blackening of teeth is commonly practiced by
+              the elderly people and the youths after they have been enrolled in
+              the “Rkhang” (Social Institution/Dormitory). However, with the
+              dawn of the Christianity and the Modern Education, the practice
+              gradually losses its sheen thence total disappearance nowadays.
+            </p>
+            <p>
+              “Murshoom/Burshoom” is a bundling of hairs of men folks right
+              above the forehead that looks like a one horn rhino. The horn
+              shaped hair bundle is then decorated with several lines of hard
+              reddish beads (rulshoom) wrapping around it. It is said that the
+              original reddish beads were made of excreta of Python snake.
+            </p>
+            <p>
+              “Laanpur Klat” is another peculiarity/distinctiveness associated
+              with the Maring people before the dawn of Christianity in our
+              society. It is the tradition of re-opening old tomb/grave for
+              re-use by relatives which is not heard elsewhere. The grave is
+              made like a necked earthen/clay pot with the man hole wide just
+              enough to drop down the death body or wide enough for entry or
+              exit for the men at work. The grave itself is unique in the sense
+              that other than the Maring people there was none who practiced the
+              custom or lately has started practicing similar custom.
+            </p>
+            <p>
+              The Maring people were also feared for their
+              witchcraft/voodoo/sorcery which had been considered education by
+              the Maring people during those early days. Today, the Maring Tribe
+              is a whopping 80,000 strong people recouping every loss in terms
+              of lives as well as social stability and developments endured due
+              to their frequent wars against the provocative mighty Meitei
+              kings. The Maring people have wriggled out of the clutches and
+              jaws of death. They believe that they will no more fall again as
+              it indeed is a deliverance by the Almighty one upon whom they have
+              unflinching faith.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="origin">
+        <div class="grid-layout">
+          <div class="sticky-col reveal">
+            <span class="chapter-num">02</span>
+            <h2 class="section-title">Origins</h2>
+            <div class="chapter-caption">Language & Myth</div>
+          </div>
+          <div class="content-col reveal">
+            <h3>Language</h3>
+            <p>
+              According to the reports of Dr. Grierson in his book “Linguistic
+              Survey of India,” the Maring language (dialect) falls in the
+              family of Tibeto-Burman languages, which comes under the sub-group
+              of Naga-Kuki languages. These sub-group languages are Sopvoma
+              (Mao-Maram), Miyangkhang (Thangal), Koireng (Kolren/Liyang),
+              Luhuppa or Luppa (i.e.Tangkhul and Maring languages).
+            </p>
+            <p>
+              Out of these sub-group languages, the three languages such as
+              Sopvoma (Mao-Maram), Tangkhul and Maring exhibit a regular
+              gradation in the change of speech. Sopvoma (Mao-Maram) is most
+              nearly connected with the Western-Naga language and the Maring
+              with the Kuki ones, while Tangkhul occupies an intermediate
+              position.
+            </p>
+            <p>
+              But culturally and socially, the Maring people are prominently
+              different from the Kuki people in regard to naming of persons,
+              name of clans, customary laws, establishment of village, village
+              administrations, festivals, folk dances and folk songs;
+              maintenance of hairs by men folks and women folks, food habits and
+              way of living, common grave yards outside the village gate,
+              burials & its rituals, etc.
+            </p>
+
+            <h3>The Myth of Kulvi-Shongshong</h3>
+            <p>
+              The oral legend of the forefathers that has been handing down from
+              generation to generation tells that the Maring people were once
+              upon a time living inside the cave called “Nungmuishor” in
+              Kulvi-Shongshong under the rulership of Khopu-Rampu with full
+              civilizations. The rulers were:
+            </p>
+            <ul>
+              <li>Charang (Purangmei, Rangmeithil/Rangshon/Kungnorkarung)</li>
+              <li>Dangsha (Khalsherung, Nangsha/Angsha)</li>
+              <li>Makung (Kungkarung/MakuTolnu)</li>
+              <li>Tantang (Tangkirung, Tangmanshou/Tangmanthral)</li>
+            </ul>
+            <p>
+              The oral legend also says that the life inside the cave or
+              underneath the Earth was terribly difficult and hard. However they
+              could not come out of the cave as there was a big stone (Lungthung
+              in local term) sealing the opening of the cave. They tried to open
+              the Lungthung using different means like pig (Hog), cow (Haal),
+              buffalo (Nalui/Nlui), etc. but in vain.
+            </p>
+            <p>
+              The legend further says that the flattened nose of the pig and the
+              crack marks on buffalo horns was obtained while trying to push
+              open the Lungthung. After long and serious discussion and
+              consultation with elders, Shrim-paa-bungrang (black with white
+              patches/white with black patches male Mithun) was bought and
+              brought from an old woman of a Chote village then was sent to push
+              open the Lungthung which at last could open it.
+            </p>
+            <p>
+              Thus, the Maring people who had been struggling to set free
+              themselves from the terrible and hard life in Nungmuishor
+              (underneath the earth) at last could make it and the first
+              settlement on earth begun there at Kulvi-Shongshong. This is the
+              reason why Mithun is considered Sacred; the most acceptable
+              sacrificial animal during important rituals/ceremonies.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="settlements">
+        <div class="grid-layout">
+          <div class="sticky-col reveal">
+            <span class="chapter-num">03</span>
+            <h2 class="section-title">Settlements</h2>
+            <div class="chapter-caption">Migration History</div>
+          </div>
+          <div class="content-col reveal">
+            <p>
+              The legendry or oral chronicle about the early settlement of the
+              Maring people says that after the first settlement at
+              Kulvi-Shongshong, the Maring people gradually moved towards an
+              empty vast land called Washaphai/Wanshangphai, Mongrengphai and
+              Mongsha in Kabaw valley. These places are now in Myanmar.
+            </p>
+            <blockquote>
+              “Before 261 B.C. the Marings were already settled in the Kabaw
+              valley. According to Myanmar traditions, Marings came from a
+              region in Western China between the sources of the Yang-tse-kiang
+              and Hwang-Ho rivers.”
+            </blockquote>
+            <p>
+              In due course of time, the civilization of the Maring people
+              gradually spread along the Ningthee basin (Inthee river basin) in
+              Moleching (also known as Angkoching) range and in Yoomadung Hills
+              (Myanmar). Later on, people took their own choice of direction and
+              moved on looking for new places for settlement.
+            </p>
+            <p>
+              Some groups proceeded towards the place called Mongni and to
+              Phaikaryam then to Mongrengphai and to Topanga in Kamongbung range
+              and came to Dolenbung. There, they set up several monoliths or
+              megaliths as signs of settlement which can be found existing till
+              today. At last they came to Shangthelbung range or Bungkarshang
+              (present Manipur: India) and from there they dispersed to
+              different directions.
+            </p>
+
+            <h3>Terminology</h3>
+            <p>
+              The term “Maring” is derived from the word “Meiring” or
+              “Meiringba,” which means “the people who had been keeping the fire
+              unquenched.” The legendry/oral chronicle says that the ‘Maring’ or
+              “Meiring’ or ‘Meiringba’ obtained fire from the traditional ways
+              of making fire called ‘Meihongtang’ using dry wood of a particular
+              tree called Khongma-heeng/Khongma-thing with bamboo strips and dry
+              bushes/grasses.
+            </p>
+            <p>
+              The belief of the Maring people in keeping the sacred fires
+              unquenched (Meikhring) was that it kept the villagers, village or
+              community alert from the evils or evil spirits and from their
+              enemies.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="clans">
+        <div class="grid-layout">
+          <div class="sticky-col reveal">
+            <span class="chapter-num">04</span>
+            <h2 class="section-title">Structure</h2>
+            <div class="chapter-caption">Clans & Village</div>
+          </div>
+          <div class="content-col reveal">
+            <p>
+              All the Maring villages had been consisted of different clans and
+              sub-clans. There had been mainly four major clans which are known
+              as (i) ‘Charang’ from the root clan ‘Rangmei’ or ‘Purangmei’ (ii)
+              ‘Dangsha’ from the root clan ‘Khalserung’ (iii) ‘Makung’ from the
+              root clan ‘Kungkarung’ and (iv) ‘Tantang’ from the root clan
+              ‘Tangkirung’ or ‘Tangkrung’.
+            </p>
+
+            <div class="data-card">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Root Clan</th>
+                    <th>Poetic Name</th>
+                    <th>Clan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Pu-Rangmei</td>
+                    <td>Shellei</td>
+                    <td>Charang</td>
+                  </tr>
+                  <tr>
+                    <td>Pu-Khalshi</td>
+                    <td>Darlei</td>
+                    <td>Dangsha</td>
+                  </tr>
+                  <tr>
+                    <td>MakuTolnu</td>
+                    <td>Yorshung</td>
+                    <td>Makung</td>
+                  </tr>
+                  <tr>
+                    <td>Tangkirung</td>
+                    <td>Parshung</td>
+                    <td>Tantang</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Village Establishment</h3>
+            <p>
+              Maring people have strong affinity with God. They have strong
+              belief that God is their protector, provider, counselor, etc.
+              Witness to their faith and belief is clear from how they establish
+              village. Prior to the establishment of a village, the Khulpu
+              (Chief Priest) has to check the proposed site for acceptability
+              through ritual performance by keeping two Roosters - one in the
+              western side of the proposed site and the other in the eastern
+              side.
+            </p>
+            <p>
+              If the Rooster in the western side crows first with its two wings
+              flapping, then it is considered bad omen so the site is rejected.
+              Whereas if the Rooster in the eastern side crows first then it is
+              considered as good omen and hence the site is approved for village
+              establishment.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="administration">
+        <div class="grid-layout">
+          <div class="sticky-col reveal">
+            <span class="chapter-num">05</span>
+            <h2 class="section-title">Governance</h2>
+            <div class="chapter-caption">Political Set-up</div>
+          </div>
+          <div class="content-col reveal">
+            <p>
+              Every Maring village has been autonomous. It has its own political
+              as well as administrative set-up like any modern day Nation. Each
+              village is ruled by the Khulpu (Charang) – Khullak (Dangsha) with
+              the help of village council whose members were elected/nominated
+              from different clans who were understood to be able, courageous,
+              intelligent and most of all, men of wisdoms.
+            </p>
+            <p>
+              Names of higher authority in the village administrative body
+              (yamarap) are:
+            </p>
+            <ul>
+              <li>
+                <strong>Khulpu:</strong> The High Priest, hereditary post.
+              </li>
+              <li>
+                <strong>Khullak:</strong> The Village Chief, hereditary post.
+              </li>
+              <li><strong>Mantri:</strong> The village secretary.</li>
+              <li>
+                <strong>Meilhampu:</strong> In charge of wildfire management.
+              </li>
+              <li><strong>Ruprak:</strong> The Chief of Army.</li>
+              <li><strong>Soupuly:</strong> Second in command of warriors.</li>
+              <li><strong>Wangkhairak:</strong> The seed sowers (Chada).</li>
+              <li><strong>Shellung:</strong> The village treasurer.</li>
+              <li><strong>Changrui:</strong> The ushers of the village.</li>
+            </ul>
+            <p>
+              Khulpu is the Chief Priest who heads all the ritualistic functions
+              and ceremonies. Khullak is the Chief of the village, managing
+              administration, political affairs, warfare, and justice. Like
+              modern day Nation, everything is being done under certain laws
+              called the Customary Law. This Law is the Constitution of the
+              Maring people as a whole.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="social">
+        <div class="grid-layout">
+          <div class="sticky-col reveal">
+            <span class="chapter-num">06</span>
+            <h2 class="section-title">Social Life</h2>
+            <div class="chapter-caption">Family & Customs</div>
+          </div>
+          <div class="content-col reveal">
+            <p>
+              Maring is an independent tribe. The socio-economic life of the
+              Maring people shows that they had been living in a well organized
+              society. There is a strong force of mutual love and respect which
+              is the asset of social harmony. Every individual respects the
+              customary laws and religious practices.
+            </p>
+            <p>
+              The Maring society is a patriarchal society. Father is regarded as
+              head of the family and holds a very high status in the society. He
+              takes decisions of the least to crucial matters. Inheritance and
+              succession in the Maring community is of primogeniture. The eldest
+              son inherits the parental properties - movable and immovable.
+            </p>
+
+            <h3>The Rkhāng</h3>
+            <p>
+              “Rkhāng” is a Social Institution of the Maring community where
+              members/students were imparted knowledge on their background &
+              origin, social & cultural activities, folklores, folkdances &
+              folksongs, social & customary laws, traditional & customary
+              practices, religion & art of living, etc. The Maring customary
+              laws demanded enrolment of youths both male and female of the
+              village into this Social Institution.
+            </p>
+            <p>
+              There were two separate Rkhāng - one for the bachelors/boys
+              (Kartláng Rkhāng) and the other for the damsels/girls (Nangāka
+              Rkhāng). It was indeed the Centre of Learning for the Maring
+              people.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="downfall">
+        <div class="grid-layout">
+          <div class="sticky-col reveal">
+            <span class="chapter-num">07</span>
+            <h2 class="section-title">History</h2>
+            <div class="chapter-caption">The Downfall</div>
+          </div>
+          <div class="content-col reveal">
+            <p>
+              The people of Maring were well known as one of the richest tribes
+              in terms of culture, traditions, customs and language from the
+              ancient times. But due to the frequent attacks from the bigger or
+              majority tribes and communities besides conflicts and wars (head
+              hunting) between their own villages, the Maring civilization had
+              gradually downfallen and forgotten too.
+            </p>
+            <p>
+              Maring villages were often attacked/raided by the troops of the
+              Meitei Maharajas since first century A.D. till the nineteen
+              century A.D. During the reign of Meidingu Ura Konthouba (568-658
+              A.D), the troop of his army attacked the Maring village “Haokap
+              Chingshāng Khunphom Ngāngcheng” which was on the Langol Hill.
+            </p>
+            <p>
+              The Maring people were indeed warriors; the incidences chronicled
+              by the Meitei kings are the pure witnesses. The Meitei kings’
+              Chronicles also witnesses the fact that the Maring warriors never
+              surrendered to enemies; pride in martyrdom. Thus conclude that the
+              frequent invasion by the mightier Meitei kings was the main reason
+              for the downfall of the Maring civilization once upon a time.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-logo">MARING MONOGRAPH</div>
+      <div class="footer-copy">
+        © 2025 Research Report. All rights reserved.
+      </div>
+    </footer>
+
+    <script>
+      // --- ANIMATIONS ON SCROLL ---
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+
+      // --- SCROLL PROGRESS BAR ---
+      window.addEventListener("scroll", () => {
+        const scrollTop =
+          document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        const scrollPercent = (scrollTop / scrollHeight) * 100;
+        document.getElementById("scroll-line").style.width =
+          scrollPercent + "%";
+      });
+    </script>
+  </body>
+</html>
